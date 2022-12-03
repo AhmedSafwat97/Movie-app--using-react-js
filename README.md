@@ -17,7 +17,7 @@ react-icons :
 axios :
 "https://www.npmjs.com/package/axios"
 Api : 
-fakwstore :
+Themoviedb :
 "https://www.themoviedb.org/movie"
 
 # Getting Started with Create React App
