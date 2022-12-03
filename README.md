@@ -1,5 +1,5 @@
 Movies app using react js
-The app conntins Home page and categories page
+The app conntains Home page and categories page
 and Movie details page .
 using react hooks
 using react router dom
