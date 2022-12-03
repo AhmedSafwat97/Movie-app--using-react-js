@@ -1,15 +1,24 @@
 Movies app using react js
 The app conntains Home page and categories page
 and Movie details page .
-using react hooks
-using react router dom
-using reactbootstrap
-using bootstrap
-using css 
-using reacticons
-using The Movie db Api :
-"https://www.themoviedb.org"
-using axios and fetch data 
+using : 
+react hooks
+css
+bootstrap
+packages : 
+react router dom :
+"https://reactrouter.com/en/main"
+bootstrap :
+"https://getbootstrap.com/docs/5.2/getting-started/introduction/"
+react-bootstrap :
+"https://react-bootstrap.github.io"
+react-icons :
+"https://react-icons.github.io/react-icons/"
+axios :
+"https://www.npmjs.com/package/axios"
+Api : 
+fakwstore :
+"https://www.themoviedb.org/movie"
 
 # Getting Started with Create React App
 
