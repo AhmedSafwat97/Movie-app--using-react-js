@@ -91,37 +91,6 @@ export default function Moviedetails(props) {
             </div>
           </Card.ImgOverlay>
         </Card>
-        {/* __________________For Mopile____________________________________ */}
-        {/* <div className="content-dm">
-          <div className="Card-d">
-            <img src={img_url + Movie.poster_path} alt="" />
-          </div>
-          <div className="Text">
-            <div className="genres">
-              <h1>{Movie.title}</h1>
-              <h3 className="mx-2">({Movie.release_date})</h3>
-            </div>
-            <div className="genres">
-              <h3 className="mx-2">
-                {Movie.vote_average}
-                <AiOutlineStar style={{ color: "yellow" }} />
-              </h3>
-              <h3>{Movie.vote_count}</h3>
-            </div>
-            <div className="genres">
-              <h3 className="mx-2">{Movie.popularity}</h3>
-              <h3 className="mx-2">{Movie.runtime}</h3>
-            </div>
-            <div className="genres">
-              <h3>Original language :</h3>
-              <h3 className="mx-2">{Movie.original_language}</h3>
-            </div>
-            <div className="Overview">
-              <h4>{Movie.overview}</h4>
-            </div>
-            <a href={Movie.homepage}>Watch</a>
-          </div>
-        </div> */}
       </div>
     </>
   );

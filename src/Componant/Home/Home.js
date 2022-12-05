@@ -5,21 +5,56 @@ import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import { useEffect, useState } from "react";
+import { AiOutlineSearch } from "@react-icons/all-files/ai/AiOutlineSearch";
 import { AiOutlinePlayCircle } from "@react-icons/all-files/ai/AiOutlinePlayCircle";
-let ApiKey = "&api_key=f0d7f15a3599b62fa40f00749d3a9304&";
-let BaseApi = "https://api.themoviedb.org/3";
-let url = BaseApi + "/discover/movie?sort_by=popularity.desc" + ApiKey;
-//
-let img_url = "https://image.tmdb.org/t/p/w500/";
+import { BiCameraMovie } from "@react-icons/all-files/bi/BiCameraMovie";
+
 function Home() {
+  const [pageNumber, setpageNumber] = useState(1);
+  let ApiKey = "&api_key=f0d7f15a3599b62fa40f00749d3a9304";
+  let BaseApi = "https://api.themoviedb.org/3";
+  let url = BaseApi + "/discover/movie?sort_by=popularity.desc" + ApiKey;
+  let img_url = "https://image.tmdb.org/t/p/w500/";
   const [movies, setMovies] = useState([]);
   const [Url_set, setUrl] = useState(url);
+  const [search, setsearch] = useState("");
 
   useEffect(() => {
     fetch(Url_set)
       .then((res) => res.json())
       .then((data) => setMovies(data.results));
-  }, []);
+  }, [Url_set]);
+
+  function nextpage() {
+    url =
+      BaseApi +
+      "/discover/movie?sort_by=popularity.desc&api_key=f0d7f15a3599b62fa40f00749d3a9304&page=" +
+      pageNumber;
+    setUrl(url);
+    setpageNumber(pageNumber + 1);
+  }
+
+  function prevpage() {
+    if (pageNumber > 1) {
+      url =
+        BaseApi +
+        "/discover/movie?sort_by=popularity.desc&api_key=f0d7f15a3599b62fa40f00749d3a9304&page=" +
+        pageNumber;
+      setUrl(url);
+      setpageNumber(pageNumber - 1);
+    }
+  }
+
+  function searchmovies(event) {
+    if (event.key === "Enter") {
+      url =
+        BaseApi +
+        "/search/movie?api_key=f0d7f15a3599b62fa40f00749d3a9304&query=" +
+        search;
+      setUrl(url);
+      setsearch(" ");
+    }
+  }
 
   return (
     <div className="Main">
@@ -35,7 +70,9 @@ function Home() {
             </h1>
             <h1 className="L4">Ever</h1>
           </div>
-          <h1 className="L5">For Movies</h1>
+          <h1 className="L5">
+            For Movies <BiCameraMovie />
+          </h1>
         </div>
         <Carousel>
           <Carousel.Item>
@@ -59,6 +96,24 @@ function Home() {
       <div>
         {" "}
         <MultipleItems />
+        {/* start search  */}
+        <div className="Search">
+          <h3>
+            Search For Movies <AiOutlineSearch />{" "}
+          </h3>
+          <input
+            type="search"
+            placeholder="Search For Movies"
+            className="input me-2"
+            onChange={(e) => {
+              setsearch(e.target.value);
+              console.log(setsearch);
+            }}
+            value={search}
+            onKeyPress={searchmovies}
+          />
+        </div>
+        {/* End search  */}
       </div>
       <div className="buttons">
         <Link to="/highrate">
@@ -93,6 +148,26 @@ function Home() {
           );
         })}
       </div>
+      {/* start pagination */}
+      <div className="pagination">
+        {" "}
+        <button
+          className="btn btn-danger mx-2"
+          onClick={() => {
+            prevpage();
+          }}>
+          prev
+        </button>
+        <button className="pageNumber">{pageNumber}</button>
+        <button
+          className="btn btn-danger mx-2"
+          onClick={() => {
+            nextpage();
+          }}>
+          Next
+        </button>
+      </div>
+      {/* End pagination */}
     </div>
   );
 }

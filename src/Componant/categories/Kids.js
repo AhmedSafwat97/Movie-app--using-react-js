@@ -1,9 +1,9 @@
 import React from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import MultipleItems from "../Home/MultipleItems";
 import { useEffect, useState } from "react";
+import { AiOutlineSearch } from "@react-icons/all-files/ai/AiOutlineSearch";
 import { AiOutlinePlayCircle } from "@react-icons/all-files/ai/AiOutlinePlayCircle";
 import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
 let ApiKey = "&api_key=f0d7f15a3599b62fa40f00749d3a9304";
@@ -15,8 +15,10 @@ let url =
 //
 let img_url = "https://image.tmdb.org/t/p/w500/";
 function Kids() {
+  const [pageNumber, setpageNumber] = useState(1);
   const [movies, setMovies] = useState([]);
   const [Url_set, setUrl] = useState(url);
+  const [search, setsearch] = useState("");
 
   useEffect(() => {
     fetch(Url_set)
@@ -25,11 +27,59 @@ function Kids() {
         // console.log(data.results)
         setMovies(data.results)
       );
-  }, []);
+  }, [Url_set]);
+
+  function searchmovies(event) {
+    if (event.key === "Enter") {
+      url =
+        BaseApi +
+        "/search/movie?api_key=f0d7f15a3599b62fa40f00749d3a9304&query=" +
+        search;
+      setUrl(url);
+      setsearch(" ");
+    }
+  }
+  function nextpage() {
+    url =
+      BaseApi +
+      "/discover/movie?sort_by=popularity.desc&api_key=f0d7f15a3599b62fa40f00749d3a9304&page=" +
+      pageNumber;
+    setUrl(url);
+    setpageNumber(pageNumber + 1);
+  }
+
+  function prevpage() {
+    if (pageNumber > 1) {
+      url =
+        BaseApi +
+        "/discover/movie?sort_by=popularity.desc&api_key=f0d7f15a3599b62fa40f00749d3a9304&page=" +
+        pageNumber;
+      setUrl(url);
+      setpageNumber(pageNumber - 1);
+    }
+  }
 
   return (
     <div className="Main">
       <MultipleItems />
+      {/* start search  */}
+      <div className="Search">
+        <h3>
+          Search For Movies <AiOutlineSearch />{" "}
+        </h3>
+        <input
+          type="search"
+          placeholder="Search For Movies"
+          className="input me-2"
+          onChange={(e) => {
+            setsearch(e.target.value);
+            console.log(setsearch);
+          }}
+          value={search}
+          onKeyPress={searchmovies}
+        />
+      </div>
+      {/* End search  */}
 
       <div className="buttons">
         <Link to="/highrate">
@@ -65,6 +115,26 @@ function Kids() {
           );
         })}
       </div>
+      {/* start pagination */}
+      <div className="pagination">
+        {" "}
+        <button
+          className="btn btn-danger mx-2"
+          onClick={() => {
+            prevpage();
+          }}>
+          prev
+        </button>
+        <button className="pageNumber">{pageNumber}</button>
+        <button
+          className="btn btn-danger mx-2"
+          onClick={() => {
+            nextpage();
+          }}>
+          Next
+        </button>
+      </div>
+      {/* End pagination */}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Pagination from "../Home/Pagination";
 import MultipleItems from "../Home/MultipleItems";
 import Card from "react-bootstrap/Card";
 import { useEffect, useState } from "react";
