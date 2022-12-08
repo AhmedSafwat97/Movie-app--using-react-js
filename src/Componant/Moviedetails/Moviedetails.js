@@ -32,7 +32,7 @@ export default function Moviedetails(props) {
   }, []);
 
   return (
-    <>
+    <div className="D-Page">
       <div className="d-page">
         <Card
           className="Container-d"
@@ -92,6 +92,42 @@ export default function Moviedetails(props) {
           </Card.ImgOverlay>
         </Card>
       </div>
-    </>
+      {/* for Mobile */}
+      <div className="d-pageM">
+        <div
+          className="Container-d"
+          style={{
+            border: "none",
+            borderTopLeftRadius: "50px",
+            borderBottomRightRadius: "50px",
+            backgroundColor:"#6C4AB6",
+            padding:"10px"
+          }}>
+                <img className="img-d" src={img_url + Movie.poster_path} alt="" />
+                <div className="Text-m mx-5">
+                  <div className="genres-data">
+                    <h1>{Movie.title}</h1>
+                    <h3 className="mx-2">({Movie.release_date})</h3>
+                  </div>
+                  <div className="genres">
+                    <h3 className="mx-2">
+                      {Movie.vote_average}
+                      <AiOutlineStar style={{ color: "yellow" }} />
+                    </h3>
+                    <h3>{Movie.vote_count}</h3>
+                  </div>
+                  <div className="genres">
+                    <h3 className="mx-2">{Movie.popularity}</h3>
+                    <h3 className="mx-2">{Movie.runtime}</h3>
+                  </div>
+                  <div className="Overview">
+                    <h4>{Movie.overview}</h4>
+                  </div>
+                  <a href={Movie.homepage}>Watch</a>
+                </div>
+
+        </div>
+      </div>
+    </div>
   );
 }

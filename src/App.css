@@ -357,8 +357,8 @@ align-items: center;
 }
 
 .slider-btn{
-  z-index: 2;
   width: 100%;
+  z-index: 2;
   display: flex;
   justify-content: space-between;
   position: absolute;
@@ -486,6 +486,9 @@ height: 370px;
   height: 100vh;
   padding-top: 30px;
 }
+.d-pageM{
+  display: none;
+}
 .dm-page{
   background-color:  #150050;
   background-size: cover;
@@ -566,6 +569,33 @@ color: white;
 }
 
 @media screen and (max-width:968px) {
+  .D-Page{
+    height: fit-content;
+    padding: 20px 0;
+    background-color: #150050;
+  }
+  .d-pageM{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .d-page{
+    display: none;
+  }
+
+  .Container-d{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .img-d{
+    width: 250px;
+    height: 300px;
+    border: 2px solid #6C4AB6 ;
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    cursor: pointer;
+  }
   .routes{
     display: none;
   }
@@ -604,6 +634,9 @@ color: white;
  }
 .d-page{
   height: 130vh;
+}
+.d-pageM{
+  display: block;
 }
 
  .Card-d{
