@@ -390,6 +390,7 @@ border: 1px solid rgba(255, 255, 255, 0.3);
   border-top-left-radius: 50px;
   border-bottom-right-radius: 50px;
   cursor: pointer;
+  margin: 10px ;
 }
 
 .Card-slider:hover .blur-m{
@@ -657,7 +658,7 @@ color: white;
 }
 .c-banner{
   width: 85%;
-  height: 25%;
+  height: 50%;
   overflow: hidden;
   position: absolute;
   z-index: 8;
